@@ -34,7 +34,7 @@ function initGame() {
                 posX -= 10
                 break;
             }
-            if ((posX >= document.innerWidth) || (posY >= document.innerHeight) || (posX <= 0) || (posY <= 0)) {
+            if ((posX >= window.innerWidth) || (posY >= window.innerHeight) || (posX <= 0) || (posY <= 0)) {
                 gameOverDiv = document.createElement("div")
                 gameOverDiv.classList.add("test")
                 document.querySelector("body").appendChild(gameOverDiv)
@@ -46,12 +46,12 @@ function initGame() {
                 mainMenuButton = document.createElement("div")
                 mainMenuButton.classList.add("button")
                 document.querySelector(gameOverDiv).appendChild(mainMenuButton)
-            }    
+            } 
             carPosition()
             rotateCar()
-        },
-        30        
+        },30        
     )
+    
 }
  
 window.addEventListener("keypress", function(e) {
