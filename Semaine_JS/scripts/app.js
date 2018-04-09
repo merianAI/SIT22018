@@ -7,6 +7,10 @@ function initialisation() {
     score = 0
     posX = Math.floor(Math.random()*window.innerWidth/10)*10
     posY = Math.floor(Math.random()*window.innerHeight/10)*10
+    divScore = document.createElement("div")
+    divScore.setAttribute("id", "score")
+    document.querySelector('body').appendChild(divScore)
+    divScore.innerHTML = score
     carPosition()
     initGame()   
     generateTrees()
@@ -34,24 +38,25 @@ function initGame() {
                 posX -= 10
                 break;
             }
-            if ((posX >= document.innerWidth) || (posY >= document.innerHeight) || (posX <= 0) || (posY <= 0)) {
+            if ((posX >= window.innerWidth) || (posY >= window.innerHeight) || (posX <= 0) || (posY <= 0)) {
                 gameOverDiv = document.createElement("div")
                 gameOverDiv.classList.add("test")
                 document.querySelector("body").appendChild(gameOverDiv)
         
                 playButton = document.createElement("div")
                 playButton.classList.add("button")
-                document.querySelector(gameOverDiv).appendChild(playButton)
+                document.querySelector(".test").appendChild(playButton)
         
                 mainMenuButton = document.createElement("div")
                 mainMenuButton.classList.add("button")
-                document.querySelector(gameOverDiv).appendChild(mainMenuButton)
-            }    
+                document.querySelector(".test   ").appendChild(mainMenuButton)
+                clearInterval(drive);
+            } 
             carPosition()
             rotateCar()
-        },
-        30        
+        }, 30        
     )
+    
 }
  
 window.addEventListener("keypress", function(e) {
@@ -84,7 +89,7 @@ function rotateCar() {
 }
 
 function generateTrees() {
-    setInterval(
+    let treesSpawn = setInterval(
         function() {
             let trs = document.createElement("div")            
             trs.classList.add("trees")
@@ -92,12 +97,29 @@ function generateTrees() {
             treesPosY = Math.floor(Math.random()*window.innerHeight/10)*10
             document.querySelector("body").appendChild(trs)
             treesPosition(trs)
-        },
-        2000
+            if ((posX >= window.innerWidth) || (posY >= window.innerHeight) || (posX <= 0) || (posY <= 0)) {
+                gameOverDiv = document.createElement("div")
+                gameOverDiv.classList.add("test")
+                document.querySelector("body").appendChild(gameOverDiv)
+        
+                playButton = document.createElement("div")
+                playButton.classList.add("button")
+                document.querySelector(".test").appendChild(playButton)
+        
+                mainMenuButton = document.createElement("div")
+                mainMenuButton.classList.add("button")
+                document.querySelector(".test   ").appendChild(mainMenuButton)
+                clearInterval(treesSpawn);
+            } 
+        }, 2000
     )
 }
 
 function treesPosition(trs) {
     trs.style.left = treesPosX + "px"
     trs.style.top = treesPosY + "px"
+}
+
+function scoreCounter() {
+    
 }
