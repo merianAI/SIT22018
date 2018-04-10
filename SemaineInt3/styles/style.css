@@ -1,6 +1,6 @@
 body{
   background-image: url("../images/couvertures.png");
-  background-size: cover;
+  background-size: auto;
   background-repeat: no-repeat;
 }
 
@@ -26,13 +26,13 @@ body{
 button{
      font-family: Arial,sans-serif;
      font-size: 1.6em;
-     width: 200px;
-     height: 43px;
+     width: 250px;
+     height: 60px;
      text-align: center;
      color: #000;
 
      background: linear-gradient( #e84118, #c23616);
-     border-radius: 8px;
+     border-radius: 30px;
 
      text-shadow: 0px 1px 0px rgba( 255, 255, 255, 0.2);
      box-shadow: 0 0 5px rgba( 0, 0, 0, 0.5),
@@ -77,7 +77,7 @@ button{
 }
 
 .buttons{
-  padding-top: 50px;
+  padding-top: 35px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -95,6 +95,7 @@ button{
 .SocialMedia{
   display:flex;
   flex-direction: column;
+  text-align: right;
 }
 
 .Media{
@@ -103,22 +104,17 @@ button{
   text-decoration: none;
   color: black;
   padding: 10px;
+  margin-right: 70px;
+  margin-bottom: 19px;
 }
 
 #Facebook{
-  position: absolute;
-  right: 48px;
-  bottom: 192px;
 }
 
 #Twitter{
-  position: absolute;
-  right: 120px;
-  bottom: 130px;
+  padding-right: 100px;
 }
 
 #Instagram{
-  position: absolute;
-  right: 45px;
-  bottom: 68px;
+  padding-right: 8px;
 }
