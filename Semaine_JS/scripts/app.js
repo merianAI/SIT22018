@@ -58,7 +58,6 @@ function initGame() {
             } 
             carPosition()
             rotateCar()
-            
         }, 30        
     )
     
@@ -93,36 +92,20 @@ function rotateCar() {              /* rotation de la voiture en fonction de la 
     }
 }
 
-function generateTrees() {              /* Génération des arbres aléatoirement */
-    let treesSpawn = setInterval(
+function generateTrees() {
+    let tree = setInterval(
         function() {
-            if ((posX < window.innerWidth) && (posY < window.innerHeight) && (posX != 0) && (posY != 0)) {
-                trs = document.createElement("div")            
-                trs.classList.add("trees")
+            if ((posX < window.innerWidth) || (posY < window.innerHeight) || (posX != 0) || (posY != 0)) {
+                trs = document.createElement("div")
+                trs.classList.add("arbre")
                 treesPosX = Math.floor(Math.random()*window.innerWidth/10)*10
                 treesPosY = Math.floor(Math.random()*window.innerHeight/10)*10
                 document.querySelector("body").appendChild(trs)
-                console.log(treesPosX, treesPosY)                
                 treesPosition(trs)
-            }
-        }, 2000,
+            } 
+        }, 2500
     )
 }
-
-if ((posX == treesPosX) && (posY == treesPosY)) {       
-    gameOverDiv = document.createElement("div")
-    gameOverDiv.classList.add("test")
-    document.querySelector("body").appendChild(gameOverDiv)
-
-    playButton = document.createElement("div")
-    playButton.classList.add("button")
-    document.querySelector(".test").appendChild(playButton)
-
-    mainMenuButton = document.createElement("div")
-    mainMenuButton.classList.add("button")
-    document.querySelector(".test").appendChild(mainMenuButton)
-    console.log("pute")
-} 
 
 function treesPosition(trs) {                   /* Position des arbres alétoire */
     trs.style.left = treesPosX + "px"
@@ -150,4 +133,3 @@ function coinsPosition(coins) {                 /* Position des bonus aléatoire
     coins.style.left = coinsPosX + "px"
     coins.style.top = coinsPosY + "px"
 }
-
