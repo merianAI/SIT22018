@@ -1,10 +1,6 @@
 body{
   background-image: url("../images/couvertures.png");
-<<<<<<< HEAD
   background-size: auto;
-=======
-  background-size: cover;
->>>>>>> 656e4e1d5a297fd47bc3c5a3af55ae8ab8beb614
   background-repeat: no-repeat;
 }
 
@@ -30,22 +26,13 @@ body{
 button{
      font-family: Arial,sans-serif;
      font-size: 1.6em;
-<<<<<<< HEAD
      width: 250px;
      height: 60px;
-=======
-     width: 200px;
-     height: 43px;
->>>>>>> 656e4e1d5a297fd47bc3c5a3af55ae8ab8beb614
      text-align: center;
      color: #000;
 
      background: linear-gradient( #e84118, #c23616);
-<<<<<<< HEAD
      border-radius: 30px;
-=======
-     border-radius: 8px;
->>>>>>> 656e4e1d5a297fd47bc3c5a3af55ae8ab8beb614
 
      text-shadow: 0px 1px 0px rgba( 255, 255, 255, 0.2);
      box-shadow: 0 0 5px rgba( 0, 0, 0, 0.5),
@@ -90,11 +77,7 @@ button{
 }
 
 .buttons{
-<<<<<<< HEAD
   padding-top: 35px;
-=======
-  padding-top: 50px;
->>>>>>> 656e4e1d5a297fd47bc3c5a3af55ae8ab8beb614
   display: flex;
   justify-content: center;
   align-items: center;
@@ -112,10 +95,7 @@ button{
 .SocialMedia{
   display:flex;
   flex-direction: column;
-<<<<<<< HEAD
   text-align: right;
-=======
->>>>>>> 656e4e1d5a297fd47bc3c5a3af55ae8ab8beb614
 }
 
 .Media{
@@ -124,7 +104,6 @@ button{
   text-decoration: none;
   color: black;
   padding: 10px;
-<<<<<<< HEAD
   margin-right: 70px;
   margin-bottom: 19px;
 }
@@ -138,24 +117,4 @@ button{
 
 #Instagram{
   padding-right: 8px;
-=======
-}
-
-#Facebook{
-  position: absolute;
-  right: 48px;
-  bottom: 192px;
-}
-
-#Twitter{
-  position: absolute;
-  right: 120px;
-  bottom: 130px;
-}
-
-#Instagram{
-  position: absolute;
-  right: 45px;
-  bottom: 68px;
->>>>>>> 656e4e1d5a297fd47bc3c5a3af55ae8ab8beb614
 }
