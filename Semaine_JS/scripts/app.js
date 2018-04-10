@@ -1,28 +1,32 @@
 let car = document.querySelector("#carId")
-let posX, posY, direction, treesPosX, treesPosY, score, divScore, gameOverDiv, playButton, mainMenuButton
+let posX, posY, direction, treesPosX, treesPosY, score, divScore, gameOverDiv, playButton, mainMenuButton, coinsPosX, coinPosY, trs
+let coins = document.createElement("div")            
 
-initialisation()
+initialisation();
 function initialisation() {
     direction = 1
-    score = 0
+    divScore = 0
     posX = Math.floor(Math.random()*window.innerWidth/10)*10
     posY = Math.floor(Math.random()*window.innerHeight/10)*10
-    divScore = document.createElement("div")
-    divScore.setAttribute("id", "score")
-    document.querySelector('body').appendChild(divScore)
+    score = document.createElement("div")
+    score.setAttribute("id", "scor")
+    document.querySelector('body').appendChild(score)
     divScore.innerHTML = score
     carPosition()
     initGame()   
     generateTrees()
+    generateCoins()
+    takeCoins()
 }
 
-function carPosition() {
+function carPosition() {                /* Initialise la position de la voiture */  
     car.style.top = posY + "px"
     car.style.left = posX + "px"
+    return posX, posY
 }
 
-function initGame() {
-    let drive = setInterval(
+function initGame() {           
+    let drive = setInterval(            /* Définitions des mouvements */
         function() {
             switch(direction) {
                 case 0:
@@ -38,7 +42,8 @@ function initGame() {
                 posX -= 10
                 break;
             }
-            if ((posX >= window.innerWidth) || (posY >= window.innerHeight) || (posX <= 0) || (posY <= 0)) {
+            if ((posX >= window.innerWidth) || (posY >= window.innerHeight) || (posX <= 0) || (posY <= 0)) {/* Création et apparition de la enêtre en cas de mort */
+                clearInterval(drive);
                 gameOverDiv = document.createElement("div")
                 gameOverDiv.classList.add("test")
                 document.querySelector("body").appendChild(gameOverDiv)
@@ -50,16 +55,16 @@ function initGame() {
                 mainMenuButton = document.createElement("div")
                 mainMenuButton.classList.add("button")
                 document.querySelector(".test   ").appendChild(mainMenuButton)
-                clearInterval(drive);
             } 
             carPosition()
             rotateCar()
+            
         }, 30        
     )
     
 }
  
-window.addEventListener("keypress", function(e) {
+window.addEventListener("keypress", function(e) {               /* Actions à faire en fonction des touches appuyées */
     switch(e.keyCode){
       case 122:
         direction = 0
@@ -76,7 +81,7 @@ window.addEventListener("keypress", function(e) {
     }
 })
 
-function rotateCar() {
+function rotateCar() {              /* rotation de la voiture en fonction de la valeur de direction */
     if (direction == 0) {
         car.style.transform = "rotate(0deg)"
     } else if (direction == 1) {
@@ -88,38 +93,61 @@ function rotateCar() {
     }
 }
 
-function generateTrees() {
+function generateTrees() {              /* Génération des arbres aléatoirement */
     let treesSpawn = setInterval(
         function() {
-            let trs = document.createElement("div")            
-            trs.classList.add("trees")
-            treesPosX = Math.floor(Math.random()*window.innerWidth/10)*10
-            treesPosY = Math.floor(Math.random()*window.innerHeight/10)*10
-            document.querySelector("body").appendChild(trs)
-            treesPosition(trs)
-            if ((posX >= window.innerWidth) || (posY >= window.innerHeight) || (posX <= 0) || (posY <= 0)) {
-                gameOverDiv = document.createElement("div")
-                gameOverDiv.classList.add("test")
-                document.querySelector("body").appendChild(gameOverDiv)
-        
-                playButton = document.createElement("div")
-                playButton.classList.add("button")
-                document.querySelector(".test").appendChild(playButton)
-        
-                mainMenuButton = document.createElement("div")
-                mainMenuButton.classList.add("button")
-                document.querySelector(".test   ").appendChild(mainMenuButton)
-                clearInterval(treesSpawn);
-            } 
-        }, 2000
+            if ((posX < window.innerWidth) && (posY < window.innerHeight) && (posX != 0) && (posY != 0)) {
+                trs = document.createElement("div")            
+                trs.classList.add("trees")
+                treesPosX = Math.floor(Math.random()*window.innerWidth/10)*10
+                treesPosY = Math.floor(Math.random()*window.innerHeight/10)*10
+                document.querySelector("body").appendChild(trs)
+                console.log(treesPosX, treesPosY)                
+                treesPosition(trs)
+            }
+        }, 2000,
     )
 }
 
-function treesPosition(trs) {
+if ((posX == treesPosX) && (posY == treesPosY)) {       
+    gameOverDiv = document.createElement("div")
+    gameOverDiv.classList.add("test")
+    document.querySelector("body").appendChild(gameOverDiv)
+
+    playButton = document.createElement("div")
+    playButton.classList.add("button")
+    document.querySelector(".test").appendChild(playButton)
+
+    mainMenuButton = document.createElement("div")
+    mainMenuButton.classList.add("button")
+    document.querySelector(".test").appendChild(mainMenuButton)
+    console.log("pute")
+} 
+
+function treesPosition(trs) {                   /* Position des arbres alétoire */
     trs.style.left = treesPosX + "px"
     trs.style.top = treesPosY + "px"
 }
 
-function scoreCounter() {
-    
+function generateCoins() {                      /* Génération aléatoire des bonus */
+    coins.classList.add("coins")
+    coinsPosX = Math.floor(Math.random()*window.innerWidth/10)*10
+    coinsPosY = Math.floor(Math.random()*window.innerHeight/10)*10
+    document.querySelector("body").appendChild(coins)
+    coinsPosition(coins)
 }
+
+function takeCoins() {                         /* Cas ou l'on passe sur une pièce */
+    if (posX == coinsPosX && posY == coinPosY) {
+        divScore += 10
+        score.innerHTML = divScore
+        document.querySelector("body").removeChild("coins")
+        generateCoins()
+    }   
+}
+
+function coinsPosition(coins) {                 /* Position des bonus aléatoire */
+    coins.style.left = coinsPosX + "px"
+    coins.style.top = coinsPosY + "px"
+}
+

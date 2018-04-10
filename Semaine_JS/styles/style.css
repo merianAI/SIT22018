@@ -15,10 +15,17 @@ body {
     position: absolute;
 }
 
-body div.trees {
+div.trees {
     height: 10px;
     width: 10px;
     background: black;
+    position: absolute;
+}
+
+div.coins {
+    height: 10px;
+    width: 10px;
+    background: red;
     position: absolute;
 }
 
@@ -32,3 +39,8 @@ div.test {
     flex-direction: column;
 }
 
+div.button {
+    height: 40px;
+    width: 70px;
+    background: red;
+}
