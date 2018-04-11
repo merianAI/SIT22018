@@ -1,34 +1,22 @@
-html {
-    overflow-y: hidden;
-    box-sizing: border-box;
-}
-
 body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    background: url('../images/map.png');
+    background-repeat: no-repeat;
 }
 
-#carId {
-    height: 9%;
-    width : 3%;
+#perso {
     position: absolute;
 }
 
-body div.trees {
-    height: 10px;
-    width: 10px;
-    background: black;
+.fightDiv {
+    top: 10%;
+    right: 80%;
+    height: 400px;
+    width: 400px;
     position: absolute;
+    background: red;
+    opacity: 0.3;
 }
 
-div.test {
-    height: 200px;
-    width: 350px;
-    background: #bdc3c7;
-    margin: 0;
-    display: flex;
-    align-content: center;
-    flex-direction: column;
-}
 
