@@ -1,0 +1,25 @@
+html{
+  font-size:62.5%;
+}
+body{
+  font-family:$primary-font;
+  background:$background-grey-ultraLight;
+  color:$secondary-color;
+  margin:0;
+  box-sizing: border-box;
+}
+
+.container{
+  width:940px;
+  margin:0 auto;
+
+  @media screen and (min-width:$stepSize1) and (max-width:$stepSize2)
+  {
+    width:640px;
+  }
+
+  @media screen and (max-width:$stepSize1)
+  {
+    width:100%;
+  }
+}

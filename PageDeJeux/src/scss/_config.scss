@@ -1,0 +1,31 @@
+$orange : #f26c4f;
+$grey : #4f4f4f;
+$background-grey-dark : #373737;
+$background-grey-light : #474747;
+$background-grey-ultraLight: #ebebeb;
+$white:#FFFFFF;
+
+$stepSize1:640px;
+$stepSize2:940px;
+
+@font-face {
+  font-family:"nexa";
+  src:url("../fonts/nexa-light.otf") format("otf"),
+  url('../fonts/nexa-light-webfont.woff2') format('woff2'),
+  url('../fonts/nexa-light-webfont.woff') format('woff');
+  font-weight:normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family:"nexa";
+  src:url("../fonts/nexa-bold.otf") format("otf"),
+      url('../fonts/nexa-bold-webfont.woff2') format('woff2'),
+      url('../fonts/nexa-bold-webfont.woff') format('woff');
+  font-weight:bold;
+  font-style:normal;
+}
+
+$primary-font: "nexa", "Arial", sans-serif;
+$primary-color:$orange;
+$secondary-color:$grey;

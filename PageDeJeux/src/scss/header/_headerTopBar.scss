@@ -1,0 +1,31 @@
+.header__topBar{
+  background:$background-grey-dark;
+
+  &__burger{
+    float:right;
+    margin-right:5px;
+    margin-top:5px;
+    display:none;
+
+    @media screen and (max-width:$stepSize1)
+    {
+      display:block;
+    }
+
+  }
+
+  div{
+
+    h1{
+      font-size:1.8rem;
+      color:$white;
+      padding:20px 10px;
+      display: inline-block;
+      margin:0;
+      vertical-align:top;
+      font-size:normal;
+    }
+
+  }
+
+}
