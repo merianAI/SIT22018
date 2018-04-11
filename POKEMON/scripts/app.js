@@ -5,8 +5,8 @@ function ClaraBoissier (type) {
 this.type = type;
 }
 //POKEMON ARRAY
-var BoissierStats = new Array();
-BoissierStats[0] = new ClaraBoissier("Clara Boissier");
+var ArmandStats = new Array();
+ArmandStats[0] = new ClaraBoissier("Clara Boissier");
 
 //POKEMON ATTACK ARRAY
 function move (move, basedmg) {
@@ -17,28 +17,31 @@ var moves = new Array();
 moves[0] = new move("Frise", 5);
 moves[1] = new move("Déhanché", 4);
 moves[2] = new move("Léviathan", 3);
-moves[3] = new move("Salopette", 4);
-moves[4] = new move("Sècher", 5);
-moves[5] = new move("PoseCafé", 4);
-moves[6] = new move("Révision", 3);
-moves[7] = new move("Bavardage", 4);
+moves[3] = new move("Locke et Hobbes", 4);
+
+var playerMoves = new Array();
+playerMoves[0] = new move("Sècher", 5);
+playerMoves[1] = new move("PoseCafé", 4);
+playerMoves[2] = new move("Révision", 3);
+playerMoves[3] = new move("Bavardage", 4);
+
 ///////////////////////////////////////////////////
 //////////////////////////////////////////////////
 //CALL CLARA BOISSIER STATS
 //CALL CLARA BOISSIER ID
 var ClaraBoissierid;
 callClaraBoissierid = function(){
-ClaraBoissierid = Math.floor(Math.random() * BoissierStats.length);
+ClaraBoissierid = Math.floor(Math.random() * ArmandStats.length);
 };
 //CALL CLARA BOISSIER LEVEL
 var ClaraBoissierLevel;
 callClaraBoissierLevel = function(){
-ClaraBoissierLevel = Math.floor(Math.random() * 6 + 1);
+ClaraBoissierLevel = 1;
 };
 //CALL CLARA BOISSIER HEALTH
 var ClaraBoissierHealth;
 callClaraBoissierHealth = function(){
-ClaraBoissierHealth = Math.floor(Math.random() + ClaraBoissierLevel + 3);
+ClaraBoissierHealth = 20;
 };
 //CALL CLARA BOISSIER ATTACK
 var moveid;
@@ -53,34 +56,34 @@ damage = Math.floor(Math.random() * moves[callMoveid].basedmg + 3);
 };
 //CALL PLAYER ATTACK DAMAGE
 callPlayerMoveDamage = function() {
-damage = Math.floor(Math.random() * moves[playerMove].basedmg + 3);
+damage = Math.floor(Math.random() * playerMoves[playerMove].basedmg + 3);
 };
 //CALL PLAYER ATTACK
 function selectMove(){
-playerMove = prompt("Tu as 4 attaques, " + moves[4].move + ", " + moves[5].move + ", " + moves[6].move + " and " + moves[7].move + ", laquelle veux tu utiliser ?").toUpperCase();
+playerMove = prompt("Tu as 4 attaques, " + playerMoves[0].move + ", " + playerMoves[1].move + ", " + playerMoves[2].move + " and " + playerMoves[3].move + ", laquelle veux tu utiliser ?").toUpperCase();
 if (playerMove === ""){
 selectMove();
 }
 else
 {
 switch(playerMove){
-case 'SECHER':
-playerMove = 4;
+case 'SÈCHER':
+playerMove = 0;
 callPlayerMoveDamage();
 playerAttack();
 break;
-case 'POSECAFE':
-playerMove = 5;
+case 'POSECAFÉ':
+playerMove = 1;
 callPlayerMoveDamage();
 playerAttack();
 break;
-case 'REVISION':
-playerMove = 6;
+case 'RÉVISION':
+playerMove = 2;
 callPlayerMoveDamage();
 playerAttack();
 break;
 case 'BAVARDAGE':
-playerMove = 7;
+playerMove = 3;
 callPlayerMoveDamage();
 playerAttack();
 break;
@@ -96,42 +99,42 @@ break;
 //////////////////////////////////////////////////
 //CLARA BOISSIER ATTACK
 function ClaraBoissierAttack(){
-if (BoissierHealth > 0){
-BoissierHealth = BoissierHealth - damage;
-alert(BoissierStats[ClaraBoissierid].type + " utilise " + moves[moveid].move + " inflige " + damage + " dégâts!");
+if (ArmandHealth > 0){
+ArmandHealth = ArmandHealth - damage;
+alert(ArmandStats[ClaraBoissierid].type + " utilise " + moves[moveid].move + " inflige " + damage + " dégâts!");
 attackLoop();}
 else
 {
-alert("Boissier s'évanouie");
+alert("Armand s'évanouie");
 }
 }
 //PLAYER ATTACK
 function playerAttack(){
-alert ("Player utilise " + moves[playerMove].move + " inflige " + damage + " dégâts!");
+alert ("Armand utilise " + playerMoves[playerMove].move + " inflige " + damage + " dégâts!");
 if (ClaraBoissierHealth > 0)
 {
 ClaraBoissierHealth = ClaraBoissierHealth - damage;
-alert(BoissierStats[ClaraBoissierid].type + " a " + ClaraBoissierHealth + " PV restants!");
+alert(ArmandStats[ClaraBoissierid].type + " a " + ClaraBoissierHealth + " PV restants!");
 playerTurn = false;
 ClaraBoissierFaint()
 }
 else
 {
-alert(BoissierStats[ClaraBoissierid].type + " s'évanouie");
+alert(ArmandStats[ClaraBoissierid].type + " s'évanouie");
 }
 }
 //RANDOMIZE CLARA BOISSIER
-function randomBoissier(){
+function randomArmand(){
 callClaraBoissierid();
 callClaraBoissierHealth();
 callClaraBoissierLevel();
 callMoveid();
 }
-var BoissierHealth = 50;
+var ArmandHealth = 50;
 //START FIGHT
 function startFight(){
-randomBoissier();
-alert(BoissierStats[ClaraBoissierid].type + " apparaît!");
+randomArmand();
+alert(ArmandStats[ClaraBoissierid].type + " apparaît!");
 alert("Niveau : " + ClaraBoissierLevel + " Vie : " + ClaraBoissierHealth);
 playerTurn = false;
 attackLoop();
@@ -150,7 +153,7 @@ selectMove();
 }
 function ClaraBoissierFaint(){
 if (ClaraBoissierHealth < 1){
-alert(BoissierStats[ClaraBoissierid].type + "  s'est évanouie");}
+alert(ArmandStats[ClaraBoissierid].type + "  s'est évanouie");}
 else
 {   attackLoop();}
 }
