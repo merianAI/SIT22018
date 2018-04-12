@@ -107,6 +107,7 @@ function selectMove(){
 //CLARA BOISSIER ATTACK
 function ClaraBoissierAttack(){
   callMoveDamage()
+  callMoveid()
     alert(ArmandStats[ClaraBoissierid].type + " utilise " + moves[moveid].move + " inflige " + damage + " dégâts!");
     if (ArmandHealth > 0){
     ArmandHealth = ArmandHealth - damage;
