@@ -12,6 +12,7 @@ ArmandStats[0] = new ClaraBoissier("Clara Boissier");
 function move (move, basedmg) {
 this.move = move;
 this.basedmg = basedmg;
+return move;
 }
 var moves = new Array();
 moves[0] = new move("Frise", 5);
@@ -46,51 +47,57 @@ ClaraBoissierHealth = 20;
 //CALL CLARA BOISSIER ATTACK
 var moveid;
 callMoveid = function(){
-moveid = Math.floor(Math.random() * moves.length);
+  moveid = Math.floor(Math.random() * moves.length);
+  return moveid;
 };
 //CALL DAMAGE
-var damage;
+  var damage;
 //CALL CLARA BOISSIER ATTACK DAMAGE
 callMoveDamage = function(){
-damage = Math.floor(Math.random() * moves[callMoveid].basedmg + 3);
+
+  damage = Math.floor(Math.random() * moves[moveid].basedmg + 3);
+  return damage;
 };
 //CALL PLAYER ATTACK DAMAGE
 callPlayerMoveDamage = function() {
-damage = Math.floor(Math.random() * playerMoves[playerMove].basedmg + 3);
+
+  damage = Math.floor(Math.random() * playerMoves[playerMove].basedmg + 3);
+  return damage;
 };
 //CALL PLAYER ATTACK
 function selectMove(){
-playerMove = prompt("Tu as 4 attaques, " + playerMoves[0].move + ", " + playerMoves[1].move + ", " + playerMoves[2].move + " and " + playerMoves[3].move + ", laquelle veux tu utiliser ?").toUpperCase();
-if (playerMove === ""){
-selectMove();
+  playerMove = prompt("Tu as 4 attaques, " + playerMoves[0].move + ", " + playerMoves[1].move + ", " + playerMoves[2].move + " and " + playerMoves[3].move + ", laquelle veux tu utiliser ?").toUpperCase();
+  if (playerMove === ""){
+    selectMove();
+    return selectMove;
 }
-else
+  else
 {
-switch(playerMove){
-case 'SÈCHER':
-playerMove = 0;
-callPlayerMoveDamage();
-playerAttack();
-break;
-case 'POSECAFÉ':
-playerMove = 1;
-callPlayerMoveDamage();
-playerAttack();
-break;
-case 'RÉVISION':
-playerMove = 2;
-callPlayerMoveDamage();
-playerAttack();
-break;
-case 'BAVARDAGE':
-playerMove = 3;
-callPlayerMoveDamage();
-playerAttack();
-break;
-default :
-alert('Attaque pas trouvées');
-selectMove();
-break;
+  switch(playerMove){
+  case 'SÈCHER':
+  playerMove = 0;
+  callPlayerMoveDamage();
+  playerAttack();
+  break;
+  case 'POSECAFÉ':
+  playerMove = 1;
+  callPlayerMoveDamage();
+  playerAttack();
+  break;
+  case 'RÉVISION':
+  playerMove = 2;
+  callPlayerMoveDamage();
+  playerAttack();
+  break;
+  case 'BAVARDAGE':
+  playerMove = 3;
+  callPlayerMoveDamage();
+  playerAttack();
+  break;
+  default :
+  alert('Attaque pas trouvées');
+  selectMove();
+  break;
 }
 }
 }
@@ -99,62 +106,77 @@ break;
 //////////////////////////////////////////////////
 //CLARA BOISSIER ATTACK
 function ClaraBoissierAttack(){
-if (ArmandHealth > 0){
-ArmandHealth = ArmandHealth - damage;
-alert(ArmandStats[ClaraBoissierid].type + " utilise " + moves[moveid].move + " inflige " + damage + " dégâts!");
-attackLoop();}
-else
-{
-alert("Armand s'évanouie");
+  callMoveDamage()
+    alert(ArmandStats[ClaraBoissierid].type + " utilise " + moves[moveid].move + " inflige " + damage + " dégâts!");
+    if (ArmandHealth > 0){
+    ArmandHealth = ArmandHealth - damage;
+    alert("Armand" + " a " + ArmandHealth  + " PV restants!");
+    attackLoop();}
+    else
+    {
+    alert("Armand s'évanouie");
+    }
+    return ClaraBoissierAttack;
 }
-}
+
 //PLAYER ATTACK
 function playerAttack(){
-alert ("Armand utilise " + playerMoves[playerMove].move + " inflige " + damage + " dégâts!");
-if (ClaraBoissierHealth > 0)
-{
-ClaraBoissierHealth = ClaraBoissierHealth - damage;
-alert(ArmandStats[ClaraBoissierid].type + " a " + ClaraBoissierHealth + " PV restants!");
-playerTurn = false;
-ClaraBoissierFaint()
+  callPlayerMoveDamage()
+    alert ("Armand utilise " + playerMoves[playerMove].move + " inflige " + damage + " dégâts!");
+    if (ClaraBoissierHealth > 0)
+    {
+    ClaraBoissierHealth = ClaraBoissierHealth - damage;
+    alert(ArmandStats[ClaraBoissierid].type + " a " + ClaraBoissierHealth + " PV restants!");
+    playerTurn = false;
+    ClaraBoissierFaint(
+
+)
+  return playerAttack
 }
-else
-{
-alert(ArmandStats[ClaraBoissierid].type + " s'évanouie");
-}
-}
-//RANDOMIZE CLARA BOISSIER
+  else
+  {
+  alert(ArmandStats[ClaraBoissierid].type + " s'évanouie");
+  }
+  }
+  //RANDOMIZE CLARA BOISSIER
 function randomArmand(){
-callClaraBoissierid();
-callClaraBoissierHealth();
-callClaraBoissierLevel();
-callMoveid();
+  callClaraBoissierid();
+  callClaraBoissierHealth();
+  callClaraBoissierLevel();
+  callMoveid();
 }
 var ArmandHealth = 50;
 //START FIGHT
 function startFight(){
-randomArmand();
-alert(ArmandStats[ClaraBoissierid].type + " apparaît!");
-alert("Niveau : " + ClaraBoissierLevel + " Vie : " + ClaraBoissierHealth);
-playerTurn = false;
-attackLoop();
+  randomArmand();
+  alert(ArmandStats[ClaraBoissierid].type + " apparaît!");
+  alert("Niveau : " + ClaraBoissierLevel + " Vie : " + ClaraBoissierHealth);
+  playerTurn = false;
+  attackLoop();
+  return startFight
 }
 function attackLoop(){
-if (playerTurn === false)
-{
-playerTurn = true;
-ClaraBoissierAttack();
+  if (playerTurn === false)
+  {
+  playerTurn = true;
+  ClaraBoissierAttack();
+  }
+  else
+  {
+  playerTurn = false;
+  selectMove();
+  }
+  return attackLoop;
 }
-else
-{
-playerTurn = false;
-selectMove();
-}
-}
+
 function ClaraBoissierFaint(){
-if (ClaraBoissierHealth < 1){
-alert(ArmandStats[ClaraBoissierid].type + "  s'est évanouie");}
-else
-{   attackLoop();}
+  if (ClaraBoissierHealth < 1){
+  alert(ArmandStats[ClaraBoissierid].type + "  s'est évanouie");
+  alert("vous avez gagné !");}
+
+  else
+  {   attackLoop();}
+  return ClaraBoissierFaint;
+
 }
 startFight();
